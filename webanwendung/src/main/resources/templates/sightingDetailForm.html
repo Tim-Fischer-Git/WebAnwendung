@@ -1,0 +1,75 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    </head>
+    <body>
+        
+           
+        <table>
+            <form method="GET" action="#" th:method="GET" th:action="@{/sighting}" th:object="${sighting}" enctype="multipart/form-data">
+                <tr>
+                    <td th:text ="*{finder}"></td>
+            
+                    <td th:text ="*{locality}"></td>
+            
+                    <td th:text ="*{date}"></td>
+            
+                    <td th:text ="*{daytime}"></td>
+
+                    <td th:text ="*{rating}"></td>
+
+                    <td th:text ="*{description}"></td>
+            
+                </tr>
+            </form>
+            <tr>
+                <td><img th:src="@{http://localhost:5634/sighting/image/proveImage-{id}.png(id=*{id})}" th:alt="@{http://localhost:5634/user/image/default.png}" style="width:100px"></td>
+            </tr>
+            <tr>
+                <td>
+                    <form  method="POST" action="#" th:method="POST" th:action="@{/sighting/detail/{id}/add(id=${sighting.id})}" th:object="${comment}">
+                        <input th:href="@{?sprache=}" type="text" th:field="*{comment}"/>
+                
+                        <input type = "submit" th:value="#{form.add}">
+                    </form>
+                </td>
+            </tr>
+            <form th:object="${sighting}">
+            <table>
+                <th>comment</th>
+                <th>date</th>
+                <th>id</th>
+                <tr>
+                <td><a th:href="@{https://www.openstreetmap.org/#map=20/{breit}/{höhe}(breit=${sighting.metadataPacket.degreeOfLatitude},höhe=${sighting.metadataPacket.degreeOfLongitude})}">[World]</a></td></tr>
+                <tr th:each="comment : ${commentlist}"> 
+                    <td th:text="${comment.comment}"></td>
+                    <td th:text="${comment.date}"></td>
+                    <td th:text="${comment.id}"></td>
+                    
+                    <div sec:authorize="hasRole('ADMIN')"><td><a th:href="@{/sighting/detail/{sid}/{cid}(cid=${comment.id},sid=${sighting.id})}">[edit]</a></td></div>
+
+                </tr>
+       
+            </table>
+        </form>
+          
+        </table>
+    
+    </body>
+</html>
+<!--
+      <form method="GET" action="#" th:method="GET" th:action="@{/sighting}" th:object="${sighting}" enctype="multipart/form-data">
+                <tr th:each="comment: ${commentlist}">
+                    <td th:text = "${comment.comment}"></td>
+                    <td th:text = "${comment.authorFullname}"></td>
+                    <td th:text = "${comment.date}"></td>
+                    
+                </tr>
+                <tr>
+                    <td><input type="submit" name="" th:value="#{form.back}"/></td>
+                </tr>
+            </form>
+        -->

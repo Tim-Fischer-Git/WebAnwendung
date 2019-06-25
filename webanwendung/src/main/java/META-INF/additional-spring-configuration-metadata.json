@@ -1,0 +1,32 @@
+{"properties": [
+  {
+    "name": "image.safe.reposetory",
+    "type": "java.lang.String",
+    "description": "A description for 'image.safe.reposetory'"
+  },
+  {
+    "name": "image.safe.typ",
+    "type": "java.lang.String",
+    "description": "A description for 'image.safe.typ'"
+  },
+  {
+    "name": "image.safe.namePart",
+    "type": "java.lang.String",
+    "description": "A description for 'image.safe.namePart'"
+  },
+  {
+    "name": "image.safe.nameTeil",
+    "type": "java.lang.String",
+    "description": "A description for 'image.safe.nameTeil'"
+  },
+  {
+    "name": "image.safe.avatarnameteil",
+    "type": "java.lang.String",
+    "description": "A description for 'image.safe.avatarnameteil'"
+  },
+  {
+    "name": "image.safe.proveimagenameteil",
+    "type": "java.lang.String",
+    "description": "A description for 'image.safe.proveimagenameteil'"
+  }
+]}

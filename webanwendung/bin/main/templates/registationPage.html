@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+
+        <link rel="stylesheet" th:href="@{/myCss.css}" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <form method="POST" action="#" th:method="POST" th:action="@{/registation}" th:object="${user}">
+            <table>
+                <tr>
+                    <td th:text ="#{form.username}"></td>
+                    
+                       <td><input type="text" th:field="*{username}" /></td> 
+                </tr >
+                <tr>
+                    <td th:text ="#{form.password}"></td>
+                    
+                        <td><input type="password" th:field="*{password}" /></td>
+             
+                </tr >
+                <tr>
+                    <td th:text ="#{form.fullname}"></td>
+                    
+                       <td><input type="text" th:field="*{fullname}" /></td> 
+                    </td>
+                </tr >
+                <tr>
+                    <td><input type="submit" th:value="#{form.register}" /></td>
+                </tr>
+            </table>
+        </form>
+
+    </body>
+</html>

@@ -1,0 +1,94 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+
+        <link rel="stylesheet" th:href="@{/myCss.css}" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <form method="POST" action="#" th:method="POST" th:action="@{/sighting}" th:object="${sighting}" enctype="multipart/form-data">
+            <table >
+                <tr>
+                    <td>
+                        <h2 bold="True" th:text ="#{form.headline}"></h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td th:text ="#{form.finder}"></td>
+                    <td th:if="${#fields.hasErrors('finder')}" >
+                        <input th:href="@{?sprache=}" type="text" th:field="*{finder}" id ="myborder" />
+                    </td>
+                    <td th:unless="${#fields.hasErrors('finder')}" >
+                        <input type="text" th:field="*{finder}" />
+                    </td>
+                </tr >
+                <tr>
+                    <td th:text ="#{form.locality}"></td>
+                    <td th:if="${#fields.hasErrors('locality')}" >
+                        <input th:href="@{?sprache=}" type="text" th:field="*{locality}" id ="myborder" />
+                    </td>
+                    <td th:unless="${#fields.hasErrors('locality')}" >
+                        <input type="text" th:field="*{locality}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td th:text ="#{form.date}"></td>
+                    <td><input type="date" th:field="*{date}" /></td>
+                    <td th:if="${#fields.hasErrors('date')}" th:errors="*{date}" style="color:red"></td>
+                </tr>
+                <tr>
+                    <td th:each="dayTimeEle: *{daytimeButton}">
+                        <label>
+                            <input type="checkbox" th:field="*{daytime}" th:value="${dayTimeEle}"/> 
+                            <span th:text="${dayTimeEle}"></span>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><select th:field="*{rating}">
+                            <option th:each="ratingButtonEle: *{ratingButton}" th:value="${ratingButtonEle}" th:text="${ratingButtonEle}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td th:text ="#{form.description}"></td>
+                    <td><input type="text" th:field="*{description}" /></td>
+                    <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}" style="color:red"></td>
+                </tr>
+                <tr>
+                        <td th:text = "#{form.image}"></td>
+                        <td>
+                            <input type="file" name="data" />
+                        </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="" th:value="#{form.add}"/></td>
+                </tr>
+            </table>
+            <tr>
+                <td th:text ="#{form.SightingsHeader}"><b></b></td>
+            </tr>
+            <table class="table table-striped">
+                <tr th:each="s: ${sightings}">
+                    <td th:text="${s.finder}"></td>
+                    <td th:text="${s.locality}"></td>
+                    <td th:text="${s.date}"></td>
+                    <td th:text="${s.description}"></td>
+                    <td th:text="${s.rating}"></td>
+                    <td th:text="${s.daytime}"></td>
+                    <td th:text="${s.id}"></td>
+
+                    <div sec:authorize="hasRole('ADMIN')"><td><a th:href="@{/sighting/{id}(id=${s.id})}">[edit]</a></td></div>
+                    <td><a th:href="@{/sighting/detail/{id}(id=${s.id})}">[Detail]</a></td>
+                </tr>
+            </table>
+            <a th:href="@{?sprache=en}">Englisch</a>
+            <a th:href="@{?sprache=de}">Deutsch</a>
+        </form>
+        <h1>Hallo!</h1>
+    Sie sind eingeloggt als <b sec:authentication="name">abc</b>
+    mit Rolle(n): <b sec:authentication="authorities">...</b>
+   
+
+    </body>
+</html>

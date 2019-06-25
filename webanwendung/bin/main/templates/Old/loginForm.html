@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+
+        <link rel="stylesheet" th:href="@{/myCss.css}" />
+
+    </head>
+    <body>
+        <form method="POST" action="#" th:method="POST" th:action="@{/user/login}" th:object="${user}">
+            <table>
+                <tr>
+                    <td th:text ="#{form.username}"></td>
+                    <td th:if="${#fields.hasErrors('username')}" >
+                        <input th:href="@{?sprache=}" type="text" th:field="*{username}" id ="myborder" />
+                    </td>
+                    <td th:unless="${#fields.hasErrors('username')}" >
+                        <input type="text" th:field="*{username}" />
+                    </td>
+                </tr >
+                <tr>
+                    <td th:text ="#{form.password}"></td>
+                    <td th:if="${#fields.hasErrors('password')}" >
+                        <input th:href="@{?sprache=}" type="password" th:field="*{password}" id ="myborder" />
+                    </td>
+                    <td th:unless="${#fields.hasErrors('password')}" >
+                        <input type="password" th:field="*{password}" />
+                    </td>
+                </tr >
+                <tr>
+                    <td>
+                        <a th:href="@{/user/registation}" th:text ="#{form.registation}"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit"  th:value="#{form.login}"/></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

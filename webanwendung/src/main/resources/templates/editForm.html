@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+
+        <link rel="stylesheet" th:href="@{/myCss.css}" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+
+        <form method="POST" action="#" th:method="POST" th:action="@{/user/edit}" th:object="${userToEdit}" enctype="multipart/form-data">
+            <table class="table">
+                <tr>
+                    <td th:text ="#{form.username}"></td>
+                    <td th:if="${#fields.hasErrors('username')}" >
+                        <input th:href="@{?sprache=}" type="text" th:field="*{username}" id ="myborder" />
+                    </td>
+                    <td th:unless="${#fields.hasErrors('username')}" >
+                        <input type="text" th:field="*{username}" />
+                    </td>
+                </tr >
+                <tr>
+                    <td th:text ="#{form.password}"></td>
+                    <td th:if="${#fields.hasErrors('password')}" >
+                        <input th:href="@{?sprache=}" type="password" th:field="*{password}" id ="myborder" />
+                    </td>
+                    <td th:unless="${#fields.hasErrors('password')}" >
+                        <input type="text" th:field="*{password}" />
+                    </td>
+                </tr >
+                <tr>
+                    <td th:text ="#{form.fullname}"></td>
+                    <td th:if="${#fields.hasErrors('fullname')}" >
+                        <input th:href="@{?sprache=}" type="text" th:field="*{fullname}" id ="myborder" />
+                    </td>
+                    <td th:unless="${#fields.hasErrors('fullname')}" >
+                        <input type="text" th:field="*{fullname}" />
+                    </td>
+                </tr >
+                <tr>
+                    <td th:text = "#{form.image}"></td>
+                    <td>
+                        <input type="file" name="data" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit"  th:value = "#{form.edit}"/></td>
+                </tr>
+            </table>
+        </form>
+
+    </body>
+</html>

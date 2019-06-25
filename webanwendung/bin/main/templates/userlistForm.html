@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+
+        <link rel="stylesheet" th:href="@{/myCss.css}" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    </body>
+        <form method="POST" action="#" th:method="POST" th:action="@{/userlist}" th:object="${user}">
+            <table>
+                <tr>
+                    <td>
+                        <input type= "text" name ="filter" >
+                        <input type= "submit" th:value ="#{form.search}">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <form method="POST" action="#" th:method="POST" th:action="@{/user/logout}" th:object="${user}">
+            <table>
+                <tr>
+                    <input type="hidden" name="username" th:value="*{username}"/>
+                    <input type="hidden" name="fullname" th:value="*{fullname}"/>
+                </tr>
+                <tr th:each="u: ${userList}">
+                    <td th:text="${u.username}"></td>
+                    <td th:text="${u.fullname}"></td>
+                    <td th:text="${u.active}"></td>
+                    <td><img th:src="@{http://localhost:5634/user/image/avatar-{name}.png(name=${u.username})}" th:alt="@{http://localhost:5634/user/image/default.png}" style="width:42px"></td>
+                    <td><a th:href="@{/user/edit/{username}(username=${u.username})}">[edit]</a></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

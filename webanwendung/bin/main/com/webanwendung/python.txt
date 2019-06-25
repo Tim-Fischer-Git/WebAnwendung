@@ -1,0 +1,49 @@
+import requests, time, sys
+
+URL = "http://http://localhost:5634/rest/sighting/16"
+AUTHINFO= ("admin", "geheim")
+
+'''
+print("GET OHNE AUTH")
+r = requests.get(URL)
+print(r.status_code)
+print(r.headers)
+print(r.text)
+print(r.json())
+
+print("GET MIT AUTH")
+r = requests.get(URL, auth = AUTHINFO)
+print(r.json())
+
+print(" GET XML ")
+h = {"Accept":"application/xml"}
+r = requests.get(URL , headers=h, auth = AUTHINFO)
+print(r.text)
+'''
+
+# Tests for PUT / POST / DELETE
+
+print(" POST JSON MIT AUTH")
+headers = {"content-type":"application/json"}
+payload= {"finder":"NEWTEST"} # Hiernach wird doch gesucht ?
+r = requests.post(URL, json=payload, auth=AUTHINFO)
+print(r.status_code)
+print(r.text)
+'''
+
+print(" POST JSON MIT AUTH")
+headers = {"content-type":"application/json"}
+payload= {"finder":"NEWTEST"}
+r = requests.put(URL, json=payload, auth=AUTHINFO)
+print(r.status_code)
+print(r.text)
+
+
+print(" POST JSON MIT AUTH")
+headers = {"content-type":"application/json"}
+payload= {"finder":"NEWTEST"}
+r = requests.delete(URL, json=payload, auth=AUTHINFO)
+print(r.status_code)
+print(r.text)
+
+'''
