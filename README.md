@@ -1,4 +1,4 @@
-# WebAnwendung
-WebAnwendung mit Spring. Um es benötigte libarys zu erhalten einmal im Terminal ./gradlew build ausführen danach
-Falls das Nicht funktioniert anbei noch ein kurzes Video
+# Webanwendung
+Webanwendung mit Spring. Um die benötigten Libarys zu erhalten einmal im Terminal ./gradlew build ausführen.
+Falls das nicht funktioniert, finden Sie anbei ein kurzes Video.
 
